@@ -8,6 +8,11 @@
 -  Database - MySQL
 -  Monitoring - Prometheus/Grafana
 
+Our app is a SaaS application for managing and handling the listing, selling, advertising, etc. of items in different marketplaces (i.e. eBay, Amazon). The application is built on top of the Laravel framework and is already containerized into 4 images (Web Server, PHP Processer, CLI, Cron).
+
+![image](https://github.com/FmTod/server-optimization-and-architecture-enhancement/assets/39545521/27bf681c-353a-4aa0-99fb-6f59a1a56076)
+
+
 ## Requirements
 
 ### Cloud Service Selection:
@@ -16,10 +21,10 @@
 2. Assess the suitability of Linode Kubernetes for the expected architecture.
 
 ### Database Architecture:
-1. Compare MySQL and MariaDB to determine the best engine for the specific use case.
-2. Implement secure installation and configuration practices for the MySQL server.
-3. Configure MySQL for optimal performance, including buffer pool size adjustment for faster query execution.
-4. Integrate Prometheus MySQL exporter for monitoring server statistics.
+1. Compare MySQL and MariaDB to determine the best distribution for our specific use case.
+2. Implement secure installation and configuration practices for the MySQL/MariaDB server.
+3. Configure MySQL/MariaDB for optimal performance, including buffer pool size adjustment for faster query execution.
+4. Integrate Prometheus MySQL/MariaDB exporter for monitoring server statistics.
 5. Set up separate instances for reading and writing, starting with a main instance and a read replica.
 6. Investigate and resolve the issue of MySQL connections remaining open.
 
@@ -34,9 +39,11 @@
 3. Design and implement a scalable and cost-effective infrastructure to support application services.
 4. Propose an infrastructure that enables independent scaling of application and database servers.
 5. Note that Kubernetes implementation is pending and will be the responsibility of the DevOps team.
-6. Cluster containers should include app pods (Laravel) as well as pods for Meilisearch, Soketi, and Redis.
-7. Pods should scale horizontally based on usage.
-8. Optimize configurations of pods to fit the application needs and usage
+8. All pods should scale horizontally based on usage.
+9. Optimize configurations of pods to fit the application needs and usage
+7. Cluster containers should include app pods (Laravel) as well as pods for Meilisearch, Soketi, and Redis.
+    1. Soketi
+        1. Sockets are used in the app to update content on the user side without the need of refreshing the page. The amount of events depends on that user's usage of the app, it could reach 1000 events per minute per user
 
 ### Error Prevention and Smooth Transition Planning:
 1. Develop strategies to prevent and mitigate errors, failures, and downtime.
